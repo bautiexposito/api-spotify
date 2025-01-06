@@ -13,6 +13,7 @@
   "author": "Sebastian Gañan",
   "license": "ISC",
   "dependencies": {
+    "api_express_2024": "file:",
     "axios": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -2,17 +2,17 @@ const axios = require('axios')
 const { request, response } = require('express')
 
 const getCanciones = (req = request, res = response) => {
-  const { nombre = '', nombreArtista = '', genero = '', reproducciones = '' } = req.query
-  console.log(nombre, nombreArtista, genero, reproducciones)
+  const {image = '', nombre = '', genero = '', reproducciones = '', isfavorite = '' } = req.query
+  console.log(image, nombre, genero, reproducciones, isfavorite)
 
   let filtro = '' // Variable para ver si hay filtro
 
+  if (image) {
+    filtro += `?image=${image}`
+  }
+  
   if (nombre) {
     filtro += `?nombre=${nombre}`
-  }
-
-  if (nombreArtista) {
-    filtro += filtro ? `&nombreArtista=${nombreArtista}` : `?nombreArtista=${nombreArtista}`
   }
 
   if (genero) {
@@ -21,6 +21,10 @@ const getCanciones = (req = request, res = response) => {
 
   if (reproducciones) {
     filtro += filtro ? `&reproducciones=${reproducciones}` : `?reproducciones=${reproducciones}`
+  }
+
+  if (isfavorite) {
+    filtro += filtro ? `&isfavorite=${isfavorite}` : `?isfavorite=${isfavorite}`
   }
 
   axios.get(`https://66dc500547d749b72acb464f.mockapi.io/api/canciones${filtro}`)
